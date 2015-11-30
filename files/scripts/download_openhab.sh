@@ -28,3 +28,21 @@ mv /opt/openhab/configurations /etc/openhab
 ln -s /etc/openhab /opt/openhab/configurations
 
 rm -f /tmp/distribution-* /tmp/demo-openhab* /tmp/hyperic-sigar-*
+
+# HABMin
+wget --quiet --no-cookies -O /tmp/habmin.zip https://github.com/cdjackson/HABmin/releases/download/0.1.3-snapshot/habmin.zip?raw=true
+
+mkdir /opt/openhab/addons-available/habmin
+wget --quiet --no-cookies -O /opt/openhab/addons-available/habmin/org.openhab.binding.zwave-1.8.0-SNAPSHOT.jar https://github.com/cdjackson/HABmin/blob/master/addons/org.openhab.binding.zwave-1.8.0-SNAPSHOT.jar?raw=true
+wget --quiet --no-cookies -O /opt/openhab/addons-available/habmin/org.openhab.io.habmin-1.7.0-SNAPSHOT.jar https://github.com/cdjackson/HABmin/blob/master/addons/org.openhab.io.habmin-1.7.0-SNAPSHOT.jar?raw=true
+
+unzip -q -d /opt/openhab /tmp/habmin.zip
+
+# HABMin 2
+wget --quiet --no-cookies -O /tmp/habmin2.zip https://github.com/cdjackson/HABmin2/releases/download/0.0.15/HABmin2-0.0.15-release.zip?raw=true
+
+mkdir /opt/openhab/addons-available/habmin2
+wget --quiet --no-cookies -O /opt/openhab/addons-available/habmin2/org.openhab.ui.habmin_2.0.0.SNAPSHOT-0.0.15.jar https://github.com/cdjackson/HABmin2/releases/download/0.0.15/org.openhab.ui.habmin_2.0.0.SNAPSHOT-0.0.15.jar?raw=true
+
+mkdir /opt/openhab/webapps/habmin2
+unzip -q -d /opt/openhab/webapps/habmin2 /tmp/habmin2.zip

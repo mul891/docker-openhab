@@ -1,6 +1,6 @@
 #!/bin/bash
 
-CONFIG_DIR=/etc/openhab/
+CONFIG_DIR=/etc/openhab
 
 ####################
 # Configure timezone
@@ -71,13 +71,16 @@ fi
 # Decide how to launch
 
 ETH0_FOUND=`grep "eth0" /proc/net/dev`
+BR0_FOUND=`grep "br0" /proc/net/dev`
 
-if [ -n "$ETH0_FOUND" ] ;
+if [[ -n "$ETH0_FOUND" || -n "$BR0_FOUND" ]] ;
 then 
   # We're in a container with regular eth0 (default)
+  echo starting supervisord
   exec /usr/bin/supervisord -c /etc/supervisor/supervisord.conf
 else 
   # We're in a container without initial network.  Wait for it...
+  echo starting pipework + supervisord
   /usr/local/bin/pipework --wait
   exec /usr/bin/supervisord -c /etc/supervisor/supervisord.conf
 fi

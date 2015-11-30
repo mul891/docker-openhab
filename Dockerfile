@@ -3,14 +3,13 @@
 #
 FROM java:openjdk-8-jdk
 MAINTAINER Tom Deckers <tom@ducbase.com>
+MAINTAINER Bob Muller <openhab@zenweb.nl>
 
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get -y update \
   && apt-get -y upgrade \
   && apt-get -y install unzip supervisor wget
-
-RUN apt-get update && apt-get -y upgrade && apt-get -y install unzip supervisor wget
 
 ENV OPENHAB_VERSION 1.7.1
 
